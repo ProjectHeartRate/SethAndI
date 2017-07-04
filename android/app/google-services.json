@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "968455998736",
+    "firebase_url": "https://hexiwear-e62f2.firebaseio.com",
+    "project_id": "hexiwear-e62f2",
+    "storage_bucket": "hexiwear-e62f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968455998736:android:647a0ea43110a502",
+        "android_client_info": {
+          "package_name": "com.wolkabout.hexiwear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968455998736-1kal8vpgahlg4l2sgd2djppgac3hmpq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wolkabout.hexiwear",
+            "certificate_hash": "714ea607801479af1470382f14cdd7af5eb75556"
+          }
+        },
+        {
+          "client_id": "968455998736-2pstrfkfuc91fn0813v4msqsnds8narh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK27lUdSek88Eo44IgnX7cnhalvyFwXRw"
+        },
+        {
+          "current_key": "AIzaSyBiVISHtG4dcpCW_9A3q7IIwReUH1D9WDE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968455998736-2pstrfkfuc91fn0813v4msqsnds8narh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
