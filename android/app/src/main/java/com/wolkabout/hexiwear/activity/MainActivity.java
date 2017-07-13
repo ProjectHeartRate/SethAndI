@@ -22,6 +22,7 @@ package com.wolkabout.hexiwear.activity;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -32,11 +33,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wolkabout.hexiwear.HexiwearApplication_;
 import com.wolkabout.hexiwear.R;
 import com.wolkabout.hexiwear.adapter.DeviceListAdapter;
 import com.wolkabout.hexiwear.model.BluetoothDeviceWrapper;
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String OTAP_PREFIX = "OTAP";
+    public static HexiwearApplication_ context;
 
     @Bean
     DeviceListAdapter adapter;
@@ -127,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         });
     }
 
+
+
     @AfterInject
     void checkService() {
         serviceBound = bindService(BluetoothService_.intent(this).get(), this, 0);
@@ -169,18 +175,33 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             dialog.shortToast(R.string.failed_to_unpair);
         }
     }
-
+/*
+* Save all the data tha is inside the if(currDevice != null)
+* Change the code insde the if to call your roleSelectAvity
+* then once role is selected call readingsActivity in the same way
+*    that is described inside the if currently.
+* */
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         final BluetoothService.ServiceBinder binder = (BluetoothService.ServiceBinder) service;
         final BluetoothService bluetoothService = binder.getService();
         final BluetoothDevice currentDevice = bluetoothService.getCurrentDevice();
         if (currentDevice != null) {
-            ReadingsActivity_.intent(this).device(currentDevice).flags(Intent.FLAG_ACTIVITY_NEW_TASK).start();
+            //Save the current to the context
+            context.currentDevice = currentDevice;
+            //Dont call this
+            //ReadingsActivity_.intent(this).device(currentDevice).flags(Intent.FLAG_ACTIVITY_NEW_TASK).start();
             final BluetoothDeviceWrapper wrapper = new BluetoothDeviceWrapper();
-            wrapper.setDevice(currentDevice);
-            wrapper.setSignalStrength(-65);
-            adapter.add(wrapper);
+            //Save the wapper
+            context.wrapper = wrapper;
+            //Call your activity
+            Intent intent = new Intent(this, StartActivity.class);
+            startActivity(intent);
+            //Call them before exiting your activity and going to readings
+            //ReadingsActivity_.intent(this).device(currentDevice).flags(Intent.FLAG_ACTIVITY_NEW_TASK).start();
+            //wrapper.setDevice(currentDevice);
+            //wrapper.setSignalStrength(-65);
+            //adapter.add(wrapper);
 
         }
 
@@ -264,7 +285,9 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         } else if (device.getName().contains(OTAP_PREFIX)) {
             FirmwareSelectActivity_.intent(this).device(device).start();
         } else {
-            ReadingsActivity_.intent(this).flags(Intent.FLAG_ACTIVITY_SINGLE_TOP).device(device).start();
+            Intent intent = new Intent(this, StartActivity.class);
+            startActivity(intent);
+            //ReadingsActivity_.intent(this).flags(Intent.FLAG_ACTIVITY_SINGLE_TOP).device(device).start();
         }
     }
 
