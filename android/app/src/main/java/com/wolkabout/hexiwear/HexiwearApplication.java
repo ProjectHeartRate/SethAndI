@@ -21,9 +21,13 @@
 package com.wolkabout.hexiwear;
 
 import android.app.Application;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.wolkabout.hexiwear.activity.LoginActivity_;
+import com.wolkabout.hexiwear.model.BluetoothDeviceWrapper;
 import com.wolkabout.wolkrestandroid.Credentials_;
 import com.wolkabout.wolkrestandroid.DefaultErrorHandler;
 
@@ -34,6 +38,11 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 
 @EApplication
 public class HexiwearApplication extends Application {
+
+    public BluetoothDevice currentDevice;
+    public BluetoothDeviceWrapper wrapper;
+    public DatabaseReference firebaseReference;
+    public FirebaseDatabase firebaseDBInstance;
 
     @Pref
     Credentials_ credentials;
