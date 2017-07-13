@@ -27,16 +27,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -48,13 +42,9 @@ import com.wolkabout.hexiwear.service.BluetoothService;
 import com.wolkabout.hexiwear.service.BluetoothService_;
 import com.wolkabout.hexiwear.util.Dialog;
 import com.wolkabout.hexiwear.util.HexiwearDevices;
-import com.wolkabout.hexiwear.view.Reading;
-import com.wolkabout.hexiwear.view.SingleReading;
-import com.wolkabout.hexiwear.view.TripleReading;
 import com.wolkabout.wolkrestandroid.Credentials_;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
@@ -65,14 +55,13 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
 /*@EActivity(R.layout.activity_readings)*/
 @EActivity(R.layout.activity_athlete_heartrate)
 @OptionsMenu(R.menu.menu_readings)
-public class ReadingsActivity extends AppCompatActivity implements ServiceConnection {
+public class ReadingsActivityForHeartRate extends AppCompatActivity implements ServiceConnection {
 
-    private static final String TAG = ReadingsActivity.class.getSimpleName();
+    private static final String TAG = ReadingsActivityForHeartRate.class.getSimpleName();
 
     @Extra
     BluetoothDevice device;

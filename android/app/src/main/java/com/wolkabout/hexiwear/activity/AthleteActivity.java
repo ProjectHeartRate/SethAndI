@@ -1,12 +1,17 @@
 package com.wolkabout.hexiwear.activity;
 
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 
+import com.wolkabout.hexiwear.HexiwearApplication;
 import com.wolkabout.hexiwear.R;
+import com.wolkabout.hexiwear.adapter.DeviceListAdapter;
+import com.wolkabout.hexiwear.model.BluetoothDeviceWrapper;
 
 /**
  * This class presents a user interface with four buttons, one to go back to the previous screen,
@@ -20,6 +25,9 @@ public class AthleteActivity extends AppCompatActivity{
     private Button athleteStep;
     private Button athleteHr;
     private Button athleteRange;
+    public HexiwearApplication context;
+
+
 
     /**
      * This method creates the athlete activity user interface.
@@ -30,11 +38,17 @@ public class AthleteActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athlete);
 
+        context = (HexiwearApplication)getApplicationContext();
+
         //initializing ui elements
         athleteBack = (Button) findViewById(R.id.athleteBack);
         athleteStep = (Button) findViewById(R.id.athleteStep);
         athleteHr = (Button) findViewById(R.id.athleteHr);
         athleteRange = (Button) findViewById(R.id.athleteRange);
+
+        BluetoothDevice currentDevice = context.currentDevice;
+        BluetoothDeviceWrapper wrapper = context.wrapper;
+        DeviceListAdapter adapter = context.adapter;
     }
 
     /**
@@ -52,6 +66,9 @@ public class AthleteActivity extends AppCompatActivity{
      */
     public void showAthleteHeartRateActivity(View view){
         Intent athleteHeartrateScreen = new Intent(this, AthleteHeartRateActivity.class);
+ /*       wrapper.setDevice(currentDevice);
+        wrapper.setSignalStrength(-65);
+        adapter.add(wrapper);*/
         startActivity(athleteHeartrateScreen);
     }
 
