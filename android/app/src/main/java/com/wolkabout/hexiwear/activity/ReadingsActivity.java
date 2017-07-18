@@ -67,8 +67,8 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-/*@EActivity(R.layout.activity_readings)*/
-@EActivity(R.layout.activity_athlete_heartrate)
+@EActivity(R.layout.activity_readings)
+/*@EActivity(R.layout.activity_athlete_heartrate)*/
 @OptionsMenu(R.menu.menu_readings)
 public class ReadingsActivity extends AppCompatActivity implements ServiceConnection {
 

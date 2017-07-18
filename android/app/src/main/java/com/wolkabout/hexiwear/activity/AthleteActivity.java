@@ -26,6 +26,9 @@ public class AthleteActivity extends AppCompatActivity{
     private Button athleteHr;
     private Button athleteRange;
     public HexiwearApplication context;
+    public BluetoothDevice currentDevice;
+    public BluetoothDeviceWrapper wrapper;
+    public DeviceListAdapter adapter;
 
 
 
@@ -46,9 +49,9 @@ public class AthleteActivity extends AppCompatActivity{
         athleteHr = (Button) findViewById(R.id.athleteHr);
         athleteRange = (Button) findViewById(R.id.athleteRange);
 
-        BluetoothDevice currentDevice = context.currentDevice;
-        BluetoothDeviceWrapper wrapper = context.wrapper;
-        DeviceListAdapter adapter = context.adapter;
+        currentDevice = context.currentDevice;
+        wrapper = context.wrapper;
+        adapter = context.adapter;
     }
 
     /**
@@ -56,8 +59,10 @@ public class AthleteActivity extends AppCompatActivity{
      * @param view sets the ui.
      */
     public void showAthleteStepsActivity(View view){
-        Intent athleteStepsScreen = new Intent(this, AthleteStepsActivity.class);
-        startActivity(athleteStepsScreen);
+        wrapper.setDevice(currentDevice);
+        wrapper.setSignalStrength(-65);
+        adapter.add(wrapper);
+        AthleteStepsActivity_.intent(this).device(currentDevice).start();
     }
 
     /**
@@ -65,11 +70,10 @@ public class AthleteActivity extends AppCompatActivity{
      * @param view sets the ui.
      */
     public void showAthleteHeartRateActivity(View view){
-        Intent athleteHeartrateScreen = new Intent(this, AthleteHeartRateActivity.class);
- /*       wrapper.setDevice(currentDevice);
+        wrapper.setDevice(currentDevice);
         wrapper.setSignalStrength(-65);
-        adapter.add(wrapper);*/
-        startActivity(athleteHeartrateScreen);
+        adapter.add(wrapper);
+        AthleteHeartRateActivity_.intent(this).device(currentDevice).start();
     }
 
     /**

@@ -79,36 +79,31 @@
             android:label="@string/change_password_activity_tile"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-
+        <activity
+            android:name=".activity.AthleteHeartRateActivity_"
+            android:label="Heart Rate Reading"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.AthleteActivity" />
+        <activity
+            android:name=".activity.AthleteStepsActivity_"
+            android:label="Steps Reading"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.AthleteActivity" />
         <activity
             android:name=".activity.AthleteActivity"
-            android:parentActivityName=".activity.StartActivity">
-
-        </activity>
-
+            android:parentActivityName=".activity.StartActivity" />
         <activity
             android:name=".activity.AthleteRangeActivity"
-            android:parentActivityName=".activity.AthleteActivity"></activity>
+            android:parentActivityName=".activity.AthleteActivity" />
         <activity
             android:name=".activity.StartActivity"
-            android:parentActivityName=".activity.StartActivity"></activity>
+            android:parentActivityName=".activity.StartActivity" />
         <activity
             android:name=".activity.CoachActivity"
-            android:parentActivityName=".activity.StartActivity">
-        </activity>
-        <activity
-            android:name=".activity.AthleteStepsActivity"
-            android:parentActivityName=".activity.AthleteActivity">
-
-        </activity>
-        <activity
-            android:name=".activity.AthleteHeartRateActivity"
-            android:parentActivityName=".activity.AthleteActivity"></activity>
+            android:parentActivityName=".activity.StartActivity" />
         <activity
             android:name=".activity.CreateAthleteActivity"
-            android:parentActivityName=".activity.CoachActivity">
-        </activity>
-
+            android:parentActivityName=".activity.CoachActivity" />
         <service
             android:name=".service.BluetoothService_"
             android:exported="false" />
@@ -118,8 +113,6 @@
         <service
             android:name=".service.NotificationService_"
             android:exported="false" />
-
-        <!--<activity android:name="com.acme.hexi.CustomReadActivity"></activity>-->
     </application>
 
 </manifest>
