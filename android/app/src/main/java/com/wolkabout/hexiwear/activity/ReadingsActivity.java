@@ -68,6 +68,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 @EActivity(R.layout.activity_readings)
+/*@EActivity(R.layout.activity_athlete_heartrate)*/
 @OptionsMenu(R.menu.menu_readings)
 public class ReadingsActivity extends AppCompatActivity implements ServiceConnection {
 
@@ -87,6 +88,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
 
     @ViewById
     EditText someReading;
+//    EditText heartrateCurrent;
 
     private ProgressDialog progressDialog;
     private HexiwearDevice hexiwearDevice;
@@ -232,6 +234,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
             case HEARTRATE:
                 someReading.setText(data.toString());
                 firebaseReference.setValue(data.toString());
+//               heartrateCurrent.setText(data.toString());
                 break;
             case LIGHT:
                 break;

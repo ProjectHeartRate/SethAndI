@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
                 deviceDiscoveryService.startScan();
             }
         });
+        context = (HexiwearApplication_)getApplicationContext();
+
     }
 
 
@@ -194,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             final BluetoothDeviceWrapper wrapper = new BluetoothDeviceWrapper();
             //Save the wapper
             context.wrapper = wrapper;
+            context.adapter = adapter;
             //Call your activity
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
@@ -285,6 +288,13 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         } else if (device.getName().contains(OTAP_PREFIX)) {
             FirmwareSelectActivity_.intent(this).device(device).start();
         } else {
+
+            context.currentDevice = device;
+            final BluetoothDeviceWrapper wrapper = new BluetoothDeviceWrapper();
+            //Save the wapper
+            context.wrapper = wrapper;
+            context.adapter = adapter;
+
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
             //ReadingsActivity_.intent(this).flags(Intent.FLAG_ACTIVITY_SINGLE_TOP).device(device).start();
