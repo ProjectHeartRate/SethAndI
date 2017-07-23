@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.wolkabout.hexiwear.HexiwearApplication_;
 import com.wolkabout.hexiwear.R;
 
@@ -17,6 +21,7 @@ public class CreateAthleteActivity extends AppCompatActivity{
 
     private EditText athleteName;
     private Button submitButton;
+    private button deleteButton;
     private HexiwearApplication_ appState;
 
     /**
@@ -32,6 +37,7 @@ public class CreateAthleteActivity extends AppCompatActivity{
 
         athleteName = (EditText) findViewById(R.id.athleteName);
         submitButton = (Button) findViewById(R.id.submitButton);
+        deleteButton = (Button) findViewById(R.id.deleteButton);
     }
 
 
@@ -45,6 +51,38 @@ public class CreateAthleteActivity extends AppCompatActivity{
         Athlete person = new Athlete(personID, name);
         appState.firebaseReference.child(personID).setValue(person);
 
+        finish();
+    }
+        public void deleteAthlete(View view){
+        String name = athleteName.getText().toString();
+        Query q = appState.firebaseReference.orderByChild("name").equalTo(name);
+        q.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                DataSnapshot d = dataSnapshot;
+                appState.firebaseReference.child(d.getKey()).removeValue();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         finish();
     }
 }
